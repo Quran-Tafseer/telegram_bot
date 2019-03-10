@@ -1,0 +1,6 @@
+Here is a list of books avaiable:
+{% for book in books %}
+- {{book.id}}: {{book.book_name}} by {{book.author}} with language {{book.language}}.
+{% endfor %}
+
+Please use /setbook to set your prefered book by its number. Example /setbook 2.
