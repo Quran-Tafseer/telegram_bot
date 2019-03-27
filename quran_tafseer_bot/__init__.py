@@ -18,6 +18,7 @@ book_list_handler = CommandHandler('books', book_list)
 set_book_handler = CommandHandler('setbook', set_book, pass_args=True)
 tafseer_handler = CommandHandler('tafseer', tafseer, pass_args=True)
 
+
 # Add the mapping
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(book_list_handler)
