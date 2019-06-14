@@ -5,15 +5,33 @@ from messages import render_message
 
 
 def start(bot, update):
+    """The start command for the bot. Ths command will
+    introduce the bot actions to the user.
+
+    :param bot: bot instance
+    :param update: update/chat instance
+    """
     message = render_message('start.html')
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
 def book_list(bot, update):
+    """Gets the list of availabe books command.
+
+    :param bot: bot instance
+    :param update: update/chat instance
+    """
     books = QuranTafseer.get_tafseer_books()
     message = render_message('book_list.html', books=books)
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
 def set_book(bot, update, args):
+    """Sets the active Tafseer book for the user.
+    This book will be used by other commands
+
+    :param bot: bot instance
+    :param update: update/chat instance
+    :param args: List of arguments. [book id]
+    """
     try:
         book_id = args[0]
     except IndexError:
@@ -42,6 +60,12 @@ def set_book(bot, update, args):
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
 def tafseer(bot, update, args):
+    """Gets the Tafseer fot the verse in a chapter.
+
+    :param bot: bot instance
+    :param update: update/chat instance
+    :param args: List of arguments. [chapter number, verse number]
+    """
     try:
         chapter_number = args[0]
         verse_number = args[1]
