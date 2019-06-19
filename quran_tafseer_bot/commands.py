@@ -1,9 +1,12 @@
 from pytafseer import QuranTafseer
 from models import UserPreference, database
+from decorators import send_action
 import peewee
 from messages import render_message
+from telegram.chataction import ChatAction
 
 
+@send_action(ChatAction.TYPING)
 def start(bot, update):
     """The start command for the bot. Ths command will
     introduce the bot actions to the user.
@@ -14,6 +17,7 @@ def start(bot, update):
     message = render_message('start.html')
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
+@send_action(ChatAction.TYPING)
 def book_list(bot, update):
     """Gets the list of availabe books command.
 
@@ -24,6 +28,7 @@ def book_list(bot, update):
     message = render_message('book_list.html', books=books)
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
+@send_action(ChatAction.TYPING)
 def set_book(bot, update, args):
     """Sets the active Tafseer book for the user.
     This book will be used by other commands
@@ -56,9 +61,11 @@ def set_book(bot, update, args):
         user.book_id=int(book_id)
     finally:
         user.save()
+    #TODO: Send the name of the book in the message instead of the ID only
     message = render_message('set_book.html', book_id=book_id)
     bot.send_message(chat_id=update.message.chat_id, text=message)
 
+@send_action(ChatAction.TYPING)
 def tafseer(bot, update, args):
     """Gets the Tafseer fot the verse in a chapter.
 
