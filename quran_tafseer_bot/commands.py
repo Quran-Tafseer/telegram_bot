@@ -26,7 +26,7 @@ def book_list(bot, update):
     """
     books = QuranTafseer.get_tafseer_books()
     message = render_message('book_list.html', books=books)
-    bot.send_message(chat_id=update.message.chat_id, text=message)
+    bot.send_message(chat_id=update.message.chat_id, text=message, parse_mode='HTML')
 
 @send_action(ChatAction.TYPING)
 def set_book(bot, update, args):
