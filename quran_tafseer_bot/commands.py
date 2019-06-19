@@ -43,7 +43,7 @@ def set_book(bot, update, args):
         # User didn't assign a book ID
         message = render_message('setbook_invalid.html')
         bot.send_message(chat_id=update.message.chat_id, text=message)
-        return
+        return None
 
     from_user = update.message.from_user
     try:
@@ -80,11 +80,10 @@ def tafseer(bot, update, args):
         # User sent invalid arguments
         bot.send_message(chat_id=update.message.chat_id,
                          text=render_message('tafseer_invalid.html'))
-        return
-
+        return None
     user= UserPreference.get(UserPreference.user_id == update.message.from_user['id'])
     tafseer_book = QuranTafseer(book_id=user.book_id)
     tafseer_text = tafseer_book.get_verse_tafseer(chapter_number=chapter_number,
-    verse_number=verse_number)
+                                                  verse_number=verse_number)
     message =  render_message('tafseer.html', tafseer=tafseer_text['text'])
     bot.send_message(chat_id=update.message.chat_id, text=message)
