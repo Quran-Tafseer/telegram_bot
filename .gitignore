@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Vistual Studio Code 
+.vscode
+
+# macOS
+.DS_Store
+
+# Database
+users_preferences.db
