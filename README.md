@@ -16,3 +16,4 @@
 |Name                   |Desciption        |Required  |
 |-----------------------|------------------|----------|
 |QURAN_TAFSEER_BOT_TOKEN|Telegram bot token| Yes      |
+|SENTRY_DSN|Sentry's project DSN| NO      |
