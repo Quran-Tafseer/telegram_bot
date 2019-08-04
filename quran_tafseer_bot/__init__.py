@@ -1,13 +1,15 @@
-from settings import BOT_TOKEN
+from settings import BOT_TOKEN, SENTRY_DSN
 from telegram.ext import Updater, CommandHandler
 import logging
-from models import UserPreference, database
-import peewee
 from commands import (start,  book_list, set_book, tafseer)
+import sentry_sdk
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.ERROR
 )
+# Enable Sentry logging
+sentry_sdk.init(SENTRY_DSN)
 
 updater = Updater(token=BOT_TOKEN)
 dispatcher = updater.dispatcher
@@ -24,12 +26,3 @@ dispatcher.add_handler(start_handler)
 dispatcher.add_handler(book_list_handler)
 dispatcher.add_handler(set_book_handler)
 dispatcher.add_handler(tafseer_handler)
-
-if __name__=="__main__":
-    database.connect()
-    # database.create_tables([UserPreference])
-    updater.start_polling()
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle()
