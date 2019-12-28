@@ -1,7 +1,8 @@
 import peewee
 
 # Define the database
-database = peewee.SqliteDatabase("users_preferences.db")
+database = peewee.SqliteDatabase("users_preferences.db", pragmas={'journal_mode': 'wal', 'cache_size': -1024 * 64})
+
 
 class BaseModel(peewee.Model):
     class Meta:
