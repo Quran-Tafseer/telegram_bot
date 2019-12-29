@@ -8,3 +8,5 @@ updater.start_polling()
 # SIGTERM or SIGABRT. This should be used most of the time, since
 # start_polling() is non-blocking and will stop the bot gracefully.
 updater.idle()
+# Close database before stopping the bot
+database.close()
