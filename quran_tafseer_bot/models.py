@@ -1,5 +1,5 @@
 import peewee
-from .database import database
+from quran_tafseer_bot.database import database
 
 
 class BaseModel(peewee.Model):

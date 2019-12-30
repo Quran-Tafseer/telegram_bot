@@ -1,5 +1,5 @@
 from quran_tafseer_bot.models import UserPreference
-from .database import create_database, database
+from quran_tafseer_bot.database import create_database, database
 
 TABLES = [UserPreference]
 
