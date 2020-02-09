@@ -1,8 +1,11 @@
-from settings import BOT_TOKEN, SENTRY_DSN
-from telegram.ext import Updater, CommandHandler
 import logging
-from commands import (start,  book_list, set_book, tafseer)
+
 import sentry_sdk
+from telegram.ext import CommandHandler, Updater
+
+from quran_telegram_bot.commands import book_list, set_book, start, tafseer
+from quran_telegram_bot.database import database
+from quran_telegram_bot.settings import BOT_TOKEN, SENTRY_DSN
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",

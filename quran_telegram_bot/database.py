@@ -2,7 +2,6 @@ from typing import List
 
 import peewee
 
-
 # Define the database
 database = peewee.SqliteDatabase("users_preferences.db",
                                  pragmas={'journal_mode': 'wal',
