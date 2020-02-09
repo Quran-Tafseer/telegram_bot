@@ -1,9 +1,10 @@
-from pytafseer import QuranTafseer
-from models import UserPreference, database
-from decorators import send_action
 import peewee
-from messages import render_message
+from pytafseer import QuranTafseer
 from telegram.chataction import ChatAction
+
+from quran_telegram_bot.decorators import send_action
+from quran_telegram_bot.messages import render_message
+from quran_telegram_bot.models import UserPreference, database
 
 
 @send_action(ChatAction.TYPING)

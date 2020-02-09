@@ -1,5 +1,5 @@
-from __init__ import updater
-from models import UserPreference, database
+from quran_telegram_bot.__init__ import updater
+from quran_telegram_bot.models import database
 
 database.connect()
 updater.start_polling()
